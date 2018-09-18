@@ -1,0 +1,102 @@
+<h1> Lista de Produtos </h1>
+<a class="btn btn-success" href="<?php echo $this->url('produto', ['action' => 'cadastrar']); ?>">Adicionar Produto</a>
+
+<?php if(count($produtos)) : ?>
+
+    <?php if(count($produtos_alterados)) : ?>
+        <h3> Últimos Alterados </h3>
+        <table class="table table-striped">
+            <tr>
+                <td>ID</td>
+                <td>Nome</td>
+                <td>Descrição</td>
+                <td>Quantidade</td>
+                <td>Preço</td>
+                <td>Estoque</td>
+                <td>Actions</td>
+            </tr>
+            <?php foreach($produtos_alterados as $key => $produto) : ?>
+                <tr>
+                    <td><?php echo $produto->getId(); ?></td>
+                    <td><?php echo $produto->getNome(); ?></td>
+                    <td><?php echo $produto->getDescricao(); ?></td>
+                    <td><?php echo $produto->getQuantidade() ? $produto->getQuantidade() : 0; ?></td>
+                    <td><?php echo $produto->getPreco(); ?></td>
+                    <td>
+                        <a href="<?php echo $this->url('produto', ['action' => 'incrementar', 'id' => $produto->getId() ]); ?>" class="btn btn-success">+</a>
+                        <a href="<?php echo $this->url('produto', ['action' => 'decrementar', 'id' => $produto->getId() ]); ?>" class="btn btn-danger">-</a>
+                    </td>
+                    <td>
+                        <a href="<?php echo $this->url('produto', ['action' => 'editar', 'id' => $produto->getId() ]); ?>" class="btn btn-info">Editar</a>
+                        <a href="<?php echo $this->url('produto', ['action' => 'deletar', 'id' => $produto->getId() ]); ?>" class="btn btn-danger">Excluir</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php endif; ?>
+
+    <?php if(count($produtos_pouco_estoque)) : ?>
+        <h3> Baixo Estoque: </h3>
+        <table class="table table-striped">
+            <tr>
+                <td>ID</td>
+                <td>Nome</td>
+                <td>Descrição</td>
+                <td>Quantidade</td>
+                <td>Preço</td>
+                <td>Estoque</td>
+                <td>Actions</td>
+            </tr>
+            <?php foreach($produtos_pouco_estoque as $key => $produto) : ?>
+                <tr>
+                    <td><?php echo $produto->getId(); ?></td>
+                    <td><?php echo $produto->getNome(); ?></td>
+                    <td><?php echo $produto->getDescricao(); ?></td>
+                    <td><?php echo $produto->getQuantidade() ? $produto->getQuantidade() : 0; ?></td>
+                    <td><?php echo $produto->getPreco(); ?></td>
+                    <td>
+                        <a href="<?php echo $this->url('produto', ['action' => 'incrementar', 'id' => $produto->getId() ]); ?>" class="btn btn-success">+</a>
+                        <a href="<?php echo $this->url('produto', ['action' => 'decrementar', 'id' => $produto->getId() ]); ?>" class="btn btn-danger">-</a>
+                    </td>
+                    <td>
+                        <a href="<?php echo $this->url('produto', ['action' => 'editar', 'id' => $produto->getId() ]); ?>" class="btn btn-info">Editar</a>
+                        <a href="<?php echo $this->url('produto', ['action' => 'deletar', 'id' => $produto->getId() ]); ?>" class="btn btn-danger">Excluir</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>    
+    <?php endif; ?>
+
+
+    <h3> Lista Geral </h3>
+    <table class="table table-striped">
+        <tr>
+            <td>ID</td>
+            <td>Nome</td>
+            <td>Descrição</td>
+            <td>Quantidade</td>
+            <td>Preço</td>
+            <td>Estoque</td>
+            <td>Actions</td>
+        </tr>
+        <?php foreach($produtos as $key => $produto) : ?>
+            <tr>
+                <td><?php echo $produto->getId(); ?></td>
+                <td><?php echo $produto->getNome(); ?></td>
+                <td><?php echo $produto->getDescricao(); ?></td>
+                <td><?php echo $produto->getQuantidade() ? $produto->getQuantidade() : 0; ?></td>
+                <td><?php echo $produto->getPreco(); ?></td>
+                <td>
+                    <a href="<?php echo $this->url('produto', ['action' => 'incrementar', 'id' => $produto->getId() ]); ?>" class="btn btn-success">+</a>
+                    <a href="<?php echo $this->url('produto', ['action' => 'decrementar', 'id' => $produto->getId() ]); ?>" class="btn btn-danger">-</a>
+                </td>
+                <td>
+                    <a href="<?php echo $this->url('produto', ['action' => 'editar', 'id' => $produto->getId() ]); ?>" class="btn btn-info">Editar</a>
+                    <a href="<?php echo $this->url('produto', ['action' => 'deletar', 'id' => $produto->getId() ]); ?>" class="btn btn-danger">Excluir</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>        
+<?php else : ?>
+    <div class="alert alert-info">Não existe produto cadastrado</div>
+<?php endif; ?>

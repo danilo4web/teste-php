@@ -1,0 +1,62 @@
+<?php
+    $title = 'Adicionando um novo produto';
+    $this->headTitle($title);
+?>
+
+<?php
+    $form->setAttribute('action', $this->url('produto', ['action' => 'cadastrar']));
+    $form->prepare();
+
+    echo $this->form()->openTag($form);
+
+    $id = $this->form->get('id');
+    $nome = $this->form->get('nome');
+    $descricao = $this->form->get('descricao');
+    $quantidade = $this->form->get('quantidade');
+    $preco = $this->form->get('preco');
+
+    $nome->setAttribute('class', 'form-control');
+    $nome->setAttribute('autofocus', 'autofocus');
+    $descricao->setAttribute('class', 'form-control');
+    $quantidade->setAttribute('class', 'form-control');
+    $preco->setAttribute('class', 'form-control');
+
+    $submit = $this->form->get('submit');
+?>
+
+<div class="form-group">
+    <div class="col-md-6">
+        <?php echo $this->formLabel($nome); ?>
+        <?php echo $this->formElement($nome); ?>
+        <?php echo $this->formElementErrors()->render($nome, ['class' => 'help-block']); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-6">
+        <?php echo $this->formLabel($descricao); ?>
+        <?php echo $this->formElement($descricao); ?>
+        <?php echo $this->formElementErrors()->render($descricao, ['class' => 'help-block']); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-6">
+        <?php echo $this->formLabel($quantidade); ?>
+        <?php echo $this->formElement($quantidade); ?>
+        <?php echo $this->formElementErrors()->render($quantidade, ['class' => 'help-block']); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-6">
+        <?php echo $this->formLabel($preco); ?>
+        <?php echo $this->formElement($preco); ?>
+        <?php echo $this->formElementErrors()->render($preco, ['class' => 'help-block']); ?>
+    </div>
+</div>
+
+<div class="row">
+    <?php echo $this->formElement($submit); ?>
+    <a href="<?php echo $this->url('produto', ['action' => 'listar']); ?>" class="btn btn-warning">Voltar</a>
+</div>

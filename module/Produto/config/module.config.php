@@ -54,9 +54,9 @@ return [
     ],
     'db' => [
         'driver' => 'Pdo_Mysql',
-        'database' => 'educaz_wp',
-        'user' => 'devweb',
-        'pass' => '152634',
+        'database' => 'vector',
+        'user' => 'root',
+        'pass' => '',
         'hostname' => 'localhost'
     ]
 ];
